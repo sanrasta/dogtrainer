@@ -4,6 +4,19 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --scooby-brown: #5A3825;
+  --scooby-teal: #00B3B3;
+  --scooby-gold: #FFD700;
+  --shaggy-green: #98B04A;
+  --shaggy-maroon: #7A3B3F;
+  --velma-orange: #FF7F50;
+  --velma-red: #8B0000;
+  --daphne-purple: #9370DB;
+  --fred-orange: #FFA500;
+  --mystery-white: #FFFFFF;
+}
+
 /* Global dark theme styles */
 body {
   background-color: #000;

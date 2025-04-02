@@ -1,22 +1,14 @@
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 
 // Define public routes
-const isPublicRoute = createRouteMatcher(['/', "/sign-in(.*)", "/book(.*)"])
+const isPublicRoute = createRouteMatcher(['/', "/sign-in(.*)"]);
 
 // Define protected routes
-const isProtectedRoute = createRouteMatcher(['/events(.*)']);
-
-// Define admin-only routes that should be blocked from direct access
-const isAdminRoute = createRouteMatcher(['/schedule(.*)']);
+const isProtectedRoute = createRouteMatcher(['/contact(.*)']);
 
 export default clerkMiddleware(async (auth, req) => {
   const { userId, redirectToSignIn } = await auth();
   const path = new URL(req.url).pathname;
-
-  // Block direct access to admin routes - redirect to events page
-  if (isAdminRoute(req)) {
-    return Response.redirect(new URL('/events', req.url));
-  }
 
   if (isProtectedRoute(req) && !userId) {
     return redirectToSignIn();
